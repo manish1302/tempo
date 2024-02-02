@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverDescription,
+  PopoverHeading,
+  PopoverClose,
+} from "./Components/Popover";
+import "./Styles/styles.css";
 
-function App() {
+function Uncontrolled() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Floating UI — Popover</h1>
+      <Popover>
+        <PopoverTrigger>My trigger</PopoverTrigger>
+        <PopoverContent className="Popover">
+          <PopoverHeading>My popover heading</PopoverHeading>
+          <PopoverDescription>My popover description</PopoverDescription>
+          <PopoverClose>Close</PopoverClose>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 }
 
-export default App;
+function Controlled() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="App">
+      <h1>Floating UI — Popover</h1>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger onClick={() => setOpen((v) => !v)}>
+          <input />
+        </PopoverTrigger>
+        <PopoverContent className="Popover">
+          <PopoverHeading>My popover heading</PopoverHeading>
+          <PopoverDescription>My popover description</PopoverDescription>
+          <PopoverClose>Close</PopoverClose>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+
+export default function App() {
+  return <Controlled />;
+}
