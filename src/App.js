@@ -1,49 +1,17 @@
-import { useState } from "react";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverDescription,
-  PopoverHeading,
-  PopoverClose,
-} from "./Components/Popover";
-import "./Styles/styles.css";
+import React, { Suspense } from 'react';
+const Header = React.lazy(() => import('MicroFrontend/Header'))
+const Footer = React.lazy(() => import('MicroFrontend/Footer'))
 
-function Uncontrolled() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>Floating UI — Popover</h1>
-      <Popover>
-        <PopoverTrigger>My trigger</PopoverTrigger>
-        <PopoverContent className="Popover">
-          <PopoverHeading>My popover heading</PopoverHeading>
-          <PopoverDescription>My popover description</PopoverDescription>
-          <PopoverClose>Close</PopoverClose>
-        </PopoverContent>
-      </Popover>
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header />
+        wofefef
+        <Footer />
+      </Suspense>
     </div>
   );
 }
 
-function Controlled() {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="App">
-      <h1>Floating UI — Popover</h1>
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger onClick={() => setOpen((v) => !v)}>
-          <input />
-        </PopoverTrigger>
-        <PopoverContent className="Popover">
-          <PopoverHeading>My popover heading</PopoverHeading>
-          <PopoverDescription>My popover description</PopoverDescription>
-          <PopoverClose>Close</PopoverClose>
-        </PopoverContent>
-      </Popover>
-    </div>
-  );
-}
-
-export default function App() {
-  return <Controlled />;
-}
+export default App;
