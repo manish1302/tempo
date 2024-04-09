@@ -7,7 +7,7 @@ const App = () => {
     <div>
       <Suspense fallback={<div>Loading...</div>}>
         <Header />
-        wofefef
+        This is the Host Application
         <Footer />
       </Suspense>
     </div>
